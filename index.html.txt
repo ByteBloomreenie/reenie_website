@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reenie's Web</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Reenie's Website</h1>
+        <p>This is my first step into web development!</p>
+    </header>
+
+    <main>
+        <h2>About Me</h2>
+        <p>I’m learning how to code websites from scratch.</p>
+        <button onclick="showAlert()">Click Me!</button>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 ReenieByteBloom. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
