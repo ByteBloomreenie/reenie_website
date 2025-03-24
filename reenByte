@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Professions Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Professional Website</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#calendar">Calendar</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Welcome to my professional website! I specialize in <strong>Graphic Design, 3D Design, Web Development, Resin Art, and more!</strong></p>
+        <p>Learn more about my skills, services, and projects.</p>
+    </section>
+
+    <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="image-gallery">
+            <img src="image1.jpg" alt="Project 1">
+            <img src="image2.jpg" alt="Project 2">
+            <img src="image3.jpg" alt="Project 3">
+        </div>
+    </section>
+
+    <section id="calendar">
+        <h2>My Calendar</h2>
+        <div id="calendar-container"></div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <form action="submit-form.php" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 All Rights Reserved. My Professions.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body> 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+section {
+    padding: 20px;
+    margin: 20px 0;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+.image-gallery {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.image-gallery img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form input, form textarea {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #444;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+  document.addEventListener("DOMContentLoaded", function() {
+    let calendarContainer = document.getElementById('calendar-container');
+    let date = new Date();
+    let currentMonth = date.getMonth();
+    let currentYear = date.getFullYear();
+
+    function generateCalendar(month, year) {
+        let firstDay = new Date(year, month).getDay();
+        let daysInMonth = new Date(year, month + 1, 0).getDate();
+        let calendarHTML = "<table><thead><tr>";
+
+        // Days of the week header
+        const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        daysOfWeek.forEach(day => {
+            calendarHTML += <th>${day}</th>;
+        });
+
+        calendarHTML += "</tr></thead><tbody><tr>";
+
+        // Empty cells before the first day of the month
+        for (let i = 0; i < firstDay; i++) {
+            calendarHTML += "<td></td>";
+        }
+
+        // Days of the month
+        for (let i = 1; i <= daysInMonth; i++) {
+            if ((firstDay + i - 1) % 7 === 0 && i !== 1) {
+                calendarHTML += "</tr><tr>"; // Start a new row for each week
+            }
+            calendarHTML += <td>${i}</td>;
+        }
+
+        calendarHTML += "</tr></tbody></table>";
+        calendarContainer.innerHTML = calendarHTML;
+    }
+
+    generateCalendar(currentMonth, currentYear);
+});
